@@ -1,20 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class HttpManager : MonoBehaviour
 {
     [SerializeField] private string URL;
-    
-    void Start()
-    {
-        
-    }
+    [SerializeField] public TMP_Text scoreWindow;
 
     public void ClickGetScores()
     {
         StartCoroutine(GetScores());
+    }
+
+    public void UpdateScoreTable()
+    {
+        
     }
 
     IEnumerator GetScores()
@@ -34,7 +37,8 @@ public class HttpManager : MonoBehaviour
 
             foreach (var score in resData.scores)
             {
-                Debug.Log(score.user_id + "|" + score.score);
+                scoreWindow.text = score.user_id.ToString() + "|" + score.score.ToString();
+                //Debug.Log(score.user_id + "|" + score.score);
             }
         }
         else
