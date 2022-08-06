@@ -37,8 +37,7 @@ public class HttpManager : MonoBehaviour
 
             foreach (var score in resData.scores)
             {
-                scoreWindow.text = score.user_id.ToString() + "|" + score.score.ToString();
-                //Debug.Log(score.user_id + "|" + score.score);
+                scoreWindow.text += score.user_id + "|" + score.score.ToString() + Environment.NewLine;
             }
         }
         else
@@ -51,7 +50,7 @@ public class HttpManager : MonoBehaviour
 [System.Serializable]
 public class ScoreValue
 {
-    public int user_id;
+    public string user_id;
     public int score;
 }
 
