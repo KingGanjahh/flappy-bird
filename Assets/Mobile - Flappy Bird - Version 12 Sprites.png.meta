@@ -111,6 +111,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -495,6 +496,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Mobile - Flappy Bird - Version 12 Sprites_7
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 364
+        width: 52
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65484eca2a3f51a44a5684c6ed5c4032
+      internalID: -1267847274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -505,6 +527,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mobile - Flappy Bird - Version 12 Sprites_41: 1693697968634820213
+      Mobile - Flappy Bird - Version 12 Sprites_6: 6124130483509997730
+      Mobile - Flappy Bird - Version 12 Sprites_4: -6830950117582225322
+      Mobile - Flappy Bird - Version 12 Sprites_3: -514118242663219353
+      Mobile - Flappy Bird - Version 12 Sprites_38: 5698634260912575106
+      Mobile - Flappy Bird - Version 12 Sprites_39: 3332850698273205949
+      Mobile - Flappy Bird - Version 12 Sprites_2: 7294014354058790825
+      Mobile - Flappy Bird - Version 12 Sprites_43: 230129452947892208
+      Mobile - Flappy Bird - Version 12 Sprites_40: -1198990072333430829
+      Mobile - Flappy Bird - Version 12 Sprites_7: -1267847274
+      Mobile - Flappy Bird - Version 12 Sprites_45: 875370270028939571
+      Mobile - Flappy Bird - Version 12 Sprites_0: 5003628964238269105
+      Mobile - Flappy Bird - Version 12 Sprites_5: -8998104236824694837
+      Mobile - Flappy Bird - Version 12 Sprites_1: -221491057933239876
+      Mobile - Flappy Bird - Version 12 Sprites_44: 4495249375143456610
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
