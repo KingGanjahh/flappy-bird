@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json.Linq;
 
 public class LogInManager : MonoBehaviour
 {
@@ -62,8 +63,7 @@ public class LogInManager : MonoBehaviour
         {
             AuthData resData = JsonUtility.FromJson<AuthData>(www.downloadHandler.text);
 
-            //StartCoroutine(LogIn(postData));
-            //PlayerPrefs("token", resData.token);
+            StartCoroutine(LogIn(postData));
         }
         else
         {
@@ -100,10 +100,37 @@ public class LogInManager : MonoBehaviour
 
     IEnumerator GetProfile()
     {
-        var url = URL + "/api/usuarios/" + username;
+        string url = URL + "/api/usuarios/" + username;
         UnityWebRequest www = UnityWebRequest.Get(url);
 
+
         www.SetRequestHeader("x-token", token);
+
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError)
+        {
+            Debug.Log("NETWORK ERROR " + www.error);
+        }
+        else if (www.responseCode == 200)
+        {
+            AuthData resData = JsonUtility.FromJson<AuthData>(www.downloadHandler.text);
+            SceneManager.LoadScene(1);
+
+        }
+        else
+        {
+            Debug.Log(www.error);
+            Debug.Log(www.downloadHandler.text);
+        }
+    }
+
+    IEnumerator PatchScore()
+    {
+        var url = URL + "/api/usuarios";
+        UnityWebRequest www = UnityWebRequest.Put(url, "{\'score\':10}");
+        www.method = "PATCH";
+        www.SetRequestHeader("content-type", "application/json");
 
         yield return www.SendWebRequest();
 
@@ -115,11 +142,13 @@ public class LogInManager : MonoBehaviour
         {
             AuthData resData = JsonUtility.FromJson<AuthData>(www.downloadHandler.text);
 
+            //StartCoroutine(LogIn(postData));
+            //PlayerPrefs("token", resData.token);
         }
         else
         {
             Debug.Log(www.error);
-        } 
+        }
     }
 
     [Serializable]
