@@ -12,12 +12,12 @@ public class LogInManager : MonoBehaviour
 {
     [SerializeField] private string URL;
 
-    private string Token, Username;
+    private string token, username;
 
     private void Start()
     {
-        Token = PlayerPrefs.GetString("token");
-        Username = PlayerPrefs.GetString("username");
+        token = PlayerPrefs.GetString("token");
+        username = PlayerPrefs.GetString("username");
 
         StartCoroutine(GetProfile());
     }
@@ -48,7 +48,7 @@ public class LogInManager : MonoBehaviour
 
     IEnumerator SignUp(string postData)
     {
-        var url = URL + "/api/usuarios";
+        var url = URL + "api/usuarios";
         UnityWebRequest www = UnityWebRequest.Put(url, postData);
         www.method = "POST";
         www.SetRequestHeader("content-type", "application/json");
@@ -73,7 +73,7 @@ public class LogInManager : MonoBehaviour
 
     IEnumerator LogIn(string postData)
     {
-        var url = URL + "/api/auth/login";
+        var url = URL + "api/auth/login";
         UnityWebRequest www = UnityWebRequest.Put(url, postData);
         www.method = "POST";
         www.SetRequestHeader("content-type", "application/json");
@@ -100,11 +100,11 @@ public class LogInManager : MonoBehaviour
 
     IEnumerator GetProfile()
     {
-        string url = URL + "/api/usuarios/" + Username;
+        string url = URL + "api/usuarios/" + username;
         UnityWebRequest www = UnityWebRequest.Get(url);
 
 
-        www.SetRequestHeader("x-token", Token);
+        www.SetRequestHeader("x-token", token);
 
         yield return www.SendWebRequest();
 

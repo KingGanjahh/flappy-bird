@@ -480,8 +480,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HttpManager, Assembly-CSharp
+      - m_Target: {fileID: 1521267449}
+        m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
         m_MethodName: ClickGetScores
         m_Mode: 1
         m_Arguments:

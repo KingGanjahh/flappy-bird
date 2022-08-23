@@ -11,7 +11,7 @@ public class ScoreHandler : MonoBehaviour
 {
     [SerializeField] private string URL;
 
-    [SerializeField] private string Token, Username;
+    [SerializeField] private string token, username;
     [SerializeField] public int score, highScore;
 
     [SerializeField] public TMP_Text scoreWindow;
@@ -23,8 +23,8 @@ public class ScoreHandler : MonoBehaviour
     {
         score = 0;
         highScore = PlayerPrefs.GetInt("High Score", highScore);
-        Token = PlayerPrefs.GetString("token");
-        Username = PlayerPrefs.GetString("username");
+        token = PlayerPrefs.GetString("token");
+        username = PlayerPrefs.GetString("username");
     }
 
     public void CheckScore()
@@ -46,7 +46,7 @@ public class ScoreHandler : MonoBehaviour
 
     public void SubScore()
     {
-        Token = PlayerPrefs.GetString("token");
+        token = PlayerPrefs.GetString("token");
 
         var data = new UserData();
 
@@ -60,13 +60,13 @@ public class ScoreHandler : MonoBehaviour
 
     public IEnumerator SetScore(string postData)
     {
-        string url = URL + "/api/usuarios";
+        string url = URL + "api/usuarios";
         UnityWebRequest www = UnityWebRequest.Put(url, postData);
 
         www.method = "PATCH";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", Token);
+        www.SetRequestHeader("x-token", token);
 
         yield return www.SendWebRequest();
 
@@ -87,12 +87,12 @@ public class ScoreHandler : MonoBehaviour
     }
     public IEnumerator GetScores()
     {
-        string url = URL + "/api/usuarios" + "?limit=5&sort=true";
+        string url = URL + "api/usuarios" + "?limit=5&sort=true";
         UnityWebRequest www = UnityWebRequest.Get(url);
         www.method = "GET";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", Token);
+        www.SetRequestHeader("x-token", token);
 
         yield return www.SendWebRequest();
 
