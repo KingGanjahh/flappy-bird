@@ -1078,6 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1528,6 +1529,7 @@ GameObject:
   - component: {fileID: 1521267447}
   - component: {fileID: 1521267446}
   - component: {fileID: 1521267448}
+  - component: {fileID: 1521267449}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1577,6 +1579,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URL: https://my-json-server.typicode.com/KingGanjahh/FakeApi
   scoreWindow: {fileID: 1329631394}
+--- !u!114 &1521267449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521267445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabd77760d832fe45b20385574735dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://my-json-server.typicode.com/KingGanjahh/FakeApi
+  token: 
+  username: 
+  score: 0
+  highScore: 0
+  scoreWindow: {fileID: 1329631394}
+  scoreText: {fileID: 113116207}
 --- !u!1 &1651017538
 GameObject:
   m_ObjectHideFlags: 0

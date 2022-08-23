@@ -2,36 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static LogInManager;
 using UnityEngine.Networking;
+using TMPro;
 using UnityEngine.UI;
+using static LogInManager;
 
 public class ScoreHandler : MonoBehaviour
 {
-    [SerializeField]
-    private string URL;
+    [SerializeField] private string URL;
 
-    public static int score = 0;
-    public static int highScore = 0;
-    private string Token;
-    public Text[] NameText;
-    public Text[] ScoreText;
+    [SerializeField] private string token, username;
+    [SerializeField] public int score, highScore;
 
-    public GameObject ScorePanel;
-    private string Username;
+    [SerializeField] public TMP_Text scoreWindow;
+    [SerializeField] public Text scoreText;
 
     void Start()
     {
         score = 0;
         highScore = PlayerPrefs.GetInt("High Score", highScore);
-        Token = PlayerPrefs.GetString("token");
-        Username = PlayerPrefs.GetString("username");
+        token = PlayerPrefs.GetString("token");
+        username = PlayerPrefs.GetString("username");
     }
 
     private void Update()
     {
-        GetComponent<Text>().text = score.ToString();
-        if (score > highScore)
+        int currentScore = Int32.Parse(scoreText.text);
+        if (currentScore > highScore)
         {
             highScore = score;
             PlayerPrefs.SetInt("High Score", highScore);
@@ -43,9 +40,9 @@ public class ScoreHandler : MonoBehaviour
         StartCoroutine(GetScores());
     }
 
-    public void SumbitPoints()
+    public void SubScore()
     {
-        Token = PlayerPrefs.GetString("token");
+        token = PlayerPrefs.GetString("token");
 
         var data = new UserData();
 
@@ -65,7 +62,7 @@ public class ScoreHandler : MonoBehaviour
         www.method = "PATCH";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", Token);
+        www.SetRequestHeader("x-token", token);
 
         yield return www.SendWebRequest();
 
@@ -91,7 +88,7 @@ public class ScoreHandler : MonoBehaviour
         www.method = "GET";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", Token);
+        www.SetRequestHeader("x-token", token);
 
         yield return www.SendWebRequest();
 
@@ -102,12 +99,10 @@ public class ScoreHandler : MonoBehaviour
         else if (www.responseCode == 200)
         {
             Scores resData = JsonUtility.FromJson<Scores>(www.downloadHandler.text);
-            ScorePanel.SetActive(true);
 
-            for (int i = 0; i < resData.usuarios.Length; i++)
+            foreach (var user in resData.usuarios)
             {
-                ScoreText[i].text = resData.usuarios[i].score.ToString();
-                NameText[i].text = resData.usuarios[i].username.ToString();
+                scoreWindow.text += user.username.ToString() + "--" + user.score.ToString();
             }
         }
         else
