@@ -480,7 +480,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1521267449}
+      - m_Target: {fileID: 1521267448}
         m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
         m_MethodName: ClickGetScores
         m_Mode: 1
@@ -1528,7 +1528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521267447}
   - component: {fileID: 1521267446}
-  - component: {fileID: 1521267449}
+  - component: {fileID: 1521267448}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1565,7 +1565,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1521267449
+--- !u!114 &1521267448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1577,7 +1577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabd77760d832fe45b20385574735dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://my-json-server.typicode.com/KingGanjahh/FakeApi
+  URL: https://unitywebrequest-restapi.herokuapp.com/
   token: 
   username: 
   score: 0

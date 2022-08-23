@@ -60,8 +60,8 @@ public class ScoreHandler : MonoBehaviour
 
     public IEnumerator SetScore(string postData)
     {
-        string url = URL + "api/usuarios";
-        UnityWebRequest www = UnityWebRequest.Put(url, postData);
+        var urlToWork = URL + "api/usuarios";
+        UnityWebRequest www = UnityWebRequest.Put(urlToWork, postData);
 
         www.method = "PATCH";
 
@@ -106,7 +106,7 @@ public class ScoreHandler : MonoBehaviour
 
             foreach (var user in resData.usuarios)
             {
-                scoreWindow.text += user.username.ToString() + "--" + user.score.ToString();
+                scoreWindow.text += user.username.ToString() + "--" + user.score.ToString() + Environment.NewLine;
             }
         }
         else
