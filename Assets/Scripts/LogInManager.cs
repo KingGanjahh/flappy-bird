@@ -12,12 +12,12 @@ public class LogInManager : MonoBehaviour
 {
     [SerializeField] private string URL;
 
-    private string token, username;
+    private string Token, Username;
 
     private void Start()
     {
-        token = PlayerPrefs.GetString("token");
-        username = PlayerPrefs.GetString("username");
+        Token = PlayerPrefs.GetString("token");
+        Username = PlayerPrefs.GetString("username");
 
         StartCoroutine(GetProfile());
     }
@@ -100,11 +100,11 @@ public class LogInManager : MonoBehaviour
 
     IEnumerator GetProfile()
     {
-        string url = URL + "/api/usuarios/" + username;
+        string url = URL + "/api/usuarios/" + Username;
         UnityWebRequest www = UnityWebRequest.Get(url);
 
 
-        www.SetRequestHeader("x-token", token);
+        www.SetRequestHeader("x-token", Token);
 
         yield return www.SendWebRequest();
 
@@ -122,32 +122,6 @@ public class LogInManager : MonoBehaviour
         {
             Debug.Log(www.error);
             Debug.Log(www.downloadHandler.text);
-        }
-    }
-
-    IEnumerator PatchScore()
-    {
-        var url = URL + "/api/usuarios";
-        UnityWebRequest www = UnityWebRequest.Put(url, "{\'score\':10}");
-        www.method = "PATCH";
-        www.SetRequestHeader("content-type", "application/json");
-
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError)
-        {
-            Debug.Log("Network Error" + www.error);
-        }
-        else if (www.responseCode == 200)
-        {
-            AuthData resData = JsonUtility.FromJson<AuthData>(www.downloadHandler.text);
-
-            //StartCoroutine(LogIn(postData));
-            //PlayerPrefs("token", resData.token);
-        }
-        else
-        {
-            Debug.Log(www.error);
         }
     }
 

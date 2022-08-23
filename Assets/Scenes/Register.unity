@@ -490,7 +490,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 783370351}
-        m_TargetAssemblyTypeName: HttpManager2, Assembly-CSharp
+        m_TargetAssemblyTypeName: LogInManager, Assembly-CSharp
         m_MethodName: ClickLogIn
         m_Mode: 1
         m_Arguments:
@@ -843,7 +843,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 783370351}
-        m_TargetAssemblyTypeName: HttpManager2, Assembly-CSharp
+        m_TargetAssemblyTypeName: LogInManager, Assembly-CSharp
         m_MethodName: ClickSignUp
         m_Mode: 1
         m_Arguments:

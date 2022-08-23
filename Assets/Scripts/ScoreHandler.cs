@@ -11,25 +11,29 @@ public class ScoreHandler : MonoBehaviour
 {
     [SerializeField] private string URL;
 
-    [SerializeField] private string token, username;
+    [SerializeField] private string Token, Username;
     [SerializeField] public int score, highScore;
 
     [SerializeField] public TMP_Text scoreWindow;
     [SerializeField] public Text scoreText;
 
+    [SerializeField] public bool isHighScore;
+
     void Start()
     {
         score = 0;
         highScore = PlayerPrefs.GetInt("High Score", highScore);
-        token = PlayerPrefs.GetString("token");
-        username = PlayerPrefs.GetString("username");
+        Token = PlayerPrefs.GetString("token");
+        Username = PlayerPrefs.GetString("username");
     }
 
-    private void Update()
+    public void CheckScore()
     {
         int currentScore = Int32.Parse(scoreText.text);
         if (currentScore > highScore)
         {
+            isHighScore = true;
+
             highScore = score;
             PlayerPrefs.SetInt("High Score", highScore);
         }
@@ -42,7 +46,7 @@ public class ScoreHandler : MonoBehaviour
 
     public void SubScore()
     {
-        token = PlayerPrefs.GetString("token");
+        Token = PlayerPrefs.GetString("token");
 
         var data = new UserData();
 
@@ -62,7 +66,7 @@ public class ScoreHandler : MonoBehaviour
         www.method = "PATCH";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", token);
+        www.SetRequestHeader("x-token", Token);
 
         yield return www.SendWebRequest();
 
@@ -88,7 +92,7 @@ public class ScoreHandler : MonoBehaviour
         www.method = "GET";
 
         www.SetRequestHeader("content-type", "application/json");
-        www.SetRequestHeader("x-token", token);
+        www.SetRequestHeader("x-token", Token);
 
         yield return www.SendWebRequest();
 
