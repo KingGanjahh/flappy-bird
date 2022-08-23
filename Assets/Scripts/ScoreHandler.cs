@@ -11,7 +11,7 @@ public class ScoreHandler : MonoBehaviour
 {
     [SerializeField] private string URL;
 
-    [SerializeField] private string token, username;
+    [SerializeField] private string token;
     [SerializeField] public int score, highScore;
 
     [SerializeField] public TMP_Text scoreWindow;
@@ -24,7 +24,6 @@ public class ScoreHandler : MonoBehaviour
         score = 0;
         highScore = PlayerPrefs.GetInt("High Score", highScore);
         token = PlayerPrefs.GetString("token");
-        username = PlayerPrefs.GetString("username");
     }
 
     public void CheckScore()
@@ -60,8 +59,8 @@ public class ScoreHandler : MonoBehaviour
 
     public IEnumerator SetScore(string postData)
     {
-        var urlToWork = URL + "api/usuarios";
-        UnityWebRequest www = UnityWebRequest.Put(urlToWork, postData);
+        var url = URL + "api/usuarios";
+        UnityWebRequest www = UnityWebRequest.Put(url, postData);
 
         www.method = "PATCH";
 
