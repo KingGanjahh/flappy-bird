@@ -43,18 +43,21 @@ public class ScoreHandler : MonoBehaviour
         StartCoroutine(GetScores());
     }
 
-    public void SubScore()
+    public void SubScore(int actualScore)
     {
-        token = PlayerPrefs.GetString("token");
+        var data = new ScoreData();
 
-        var data = new UserData();
+        if (actualScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", actualScore);
 
-        data.username = PlayerPrefs.GetString("username");
-        data.score = PlayerPrefs.GetInt("High Score");
+            data.username = PlayerPrefs.GetString("username");
+            data.score = PlayerPrefs.GetInt("HighScore");
 
-        var postData = JsonUtility.ToJson(data);
+            string postData = JsonUtility.ToJson(data);
 
-        StartCoroutine(SetScore(postData));
+            StartCoroutine(SetScore(postData));
+        }
     }
 
     public IEnumerator SetScore(string postData)
@@ -64,8 +67,10 @@ public class ScoreHandler : MonoBehaviour
 
         www.method = "PATCH";
 
-        www.SetRequestHeader("content-type", "application/json");
+        www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("x-token", token);
+
+        Debug.Log(postData);
 
         yield return www.SendWebRequest();
 
@@ -119,9 +124,8 @@ public class ScoreHandler : MonoBehaviour
 [Serializable]
 public class ScoreData
 {
-    public string user_id;
+    public string username;
     public int score;
-    public int highScore;
 }
 
 [Serializable]

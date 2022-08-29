@@ -17,16 +17,19 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);
-        Time.timeScale = 0;
 
-        scoreHandler.CheckScore();
+        int actualScore = Score.score;
 
-        if (scoreHandler.isHighScore)
+        ScoreData data = new ScoreData();
+
+        if (actualScore > PlayerPrefs.GetInt("HighScore", 0))
         {
-            scoreHandler.SubScore();
-            scoreHandler.isHighScore = false;
+            scoreHandler.SubScore(actualScore);
         }
+
+        Time.timeScale = 0;
     }
+
     public void Replay()
     {
         SceneManager.LoadScene(1);
